@@ -1,13 +1,15 @@
 package problem2.main;
 
-import javax.swing.tree.TreeNode;
-
 public class MyTraverse {
-        TreeNode root;
+       TreeNode root;
 
     public TreeNode getRoot() {
         return root;
     }
-    public void insert(int data){
+    public void insert(int data) {
+        TreeNode node = new TreeNode(data);
+        if (root == null) {
+
+        }
     }
 }
