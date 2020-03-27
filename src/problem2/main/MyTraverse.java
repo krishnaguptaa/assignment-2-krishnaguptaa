@@ -9,7 +9,7 @@ public class MyTraverse {
     public void insert(int data) {
         TreeNode node = new TreeNode(data);
         if (root == null) {
-
+            root = node;
         }
     }
 }
