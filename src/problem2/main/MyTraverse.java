@@ -36,4 +36,8 @@ public class MyTraverse {
             traversePreorder(node.getRight());
         }
     }
+
+    void traversePostorder(TreeNode node) {
+
+    }
 }
