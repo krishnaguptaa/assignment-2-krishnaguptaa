@@ -64,4 +64,8 @@ public class MyQueue {
         System.out.println("\b");
         queue.temp = queue.front;
     }
+
+    public void enqueue(Node node) {
+
+    }
 }
