@@ -66,6 +66,19 @@ public class MyQueue {
     }
 
     public void enqueue(Node node) {
+        if (front == null) {
+            temp = front = end = node;
+        } else {
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+            end = node;
+            temp.setNext(node);
+            temp = front;
+        }
+    }
+
+    public void preOrder(TreeNode node) {
 
     }
 }
