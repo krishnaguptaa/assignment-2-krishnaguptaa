@@ -68,6 +68,34 @@ public class MyCircularQueue {
         return temp;
     }
 
+    public void removeZeroBacklogRecords() {
+        Node before = getEnd();
+        Node ahead = getFront();
+        while (true) {
+            if (ahead.getS().getBacklog() == 0) {
+                System.out.println("Removed data --> ");
+                System.out.println(ahead.getS());
+                if (ahead == getFront()) {
+                    before.setNext(ahead.getNext());
+                    setFront(getFront().getNext());
+                    ahead = ahead.getNext();
+                    continue;
+                } else if (ahead == getEnd()) {
+                    before.setNext(ahead.getNext());
+                    setEnd(before);
+                    break;
+                } else {
+                    before.setNext(ahead.getNext());
+                    ahead = ahead.getNext();
+                }
+            } else {
+                ahead = ahead.getNext();
+                before = before.getNext();
+            }
+            if (ahead == getFront())
+                break;
+        }
+    }
 
 
 }
