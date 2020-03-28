@@ -10,84 +10,64 @@ import problem5.node.Node;
 
 //to implement circular queue
 public class MyCircularQueue {
-    private Node front, temp, end;
-
-    public MyCircularQueue() {
-        front = null;
-        temp = null;
-        end = null;
-    }
+    private Node front, end;
 
     public Node getFront() {
         return front;
+    }
+
+    public Node getEnd() {
+        return end;
+    }
+
+    public void setEnd(Node end) {
+        this.end = end;
     }
 
     public void setFront(Node front) {
         this.front = front;
     }
 
-    public Node getTemp() {
+    public void enqueue(Node newNode) {
+        if (getFront() == null && getEnd() == null) {
+            setFront(newNode);
+            setEnd(newNode);
+            getEnd().setNext(getFront());
+        } else {
+            newNode.setNext(getFront());
+            getEnd().setNext(newNode);
+            setEnd(getEnd().getNext());
+        }
+    }
+
+    public void traverseQueue() {
+        Node temp = getFront();
+        while (true) {
+            System.out.println(temp.getS());
+            temp = temp.getNext();
+            if (temp == getFront()) {
+                break;
+            }
+        }
+    }
+
+    public Node deQueue() {
+        Node temp;
+        if (getFront() == null) {
+            return null;
+
+        } else if (getFront() == getEnd()) {
+            temp = getFront();
+            setEnd(null);
+            setFront(null);
+        } else {
+            temp = getFront();
+            setFront(getFront().getNext());
+            getEnd().setNext(getFront());
+        }
         return temp;
     }
 
-    public void setTemp(Node temp) {
-        this.temp = temp;
-    }
 
-    public void enqueue(Node newNode) {
-        if (front == null) {
-            temp = front = newNode;
-            return;
-        }
-        if (temp.getNext() == null) {
-            temp.setNext(newNode);
-            newNode.setNext(temp);
-            end = newNode;
-            return;
-        }
-        newNode.setNext(temp.getNext());
-        temp.setNext(newNode);
-    }
 
-    public void printQueue() {
-        temp = front;
-        try {
-            do {
-                System.out.println(temp.getS().toString());
-                temp = temp.getNext();
-            }
-            while (temp != front && temp != null);
-        } catch (NullPointerException ignored) {
-        }
-    }
-
-    public void remove(String name) {
-        temp = front;
-        if (temp.getS().getName().equals(name) && temp.getS().getBacklog() == 0) {
-            temp = front = front.getNext();
-        }
-        while (!temp.getNext().getS().getName().equals(name)) {
-            temp = temp.getNext();
-            if (temp == front)
-                return;
-        }
-        if (temp.getS().getBacklog() == 0) {
-            temp.setNext(temp.getNext().getNext());
-        }
-    }
-
-    public void process(String name) {
-        temp = front;
-        if (temp.getS().getName().equals(name)) {
-            System.out.println(temp.getS().toString());
-            System.out.println(temp.getS().getBacklog() - temp.getS().getAppearingcount());
-        }
-        while (!temp.getS().getName().equals(name)) {
-            temp = temp.getNext();
-            if (temp == front)
-                return;
-        }
-        System.out.println(temp.getS().toString());
-        System.out.println(temp.getS().getBacklog() - temp.getS().getAppearingcount());
-    }
 }
