@@ -5,6 +5,16 @@
  *  Time: 7:06 PM
  */
 package problem5.circularqueue;
+
+import problem5.node.Node;
+
 //to implement circular queue
 public class MyCircularQueue {
+    private Node front, temp, end;
+
+    public MyCircularQueue() {
+        front = null;
+        temp = null;
+        end = null;
+    }
 }
