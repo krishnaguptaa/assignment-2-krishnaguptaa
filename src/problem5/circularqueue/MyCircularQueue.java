@@ -51,6 +51,17 @@ public class MyCircularQueue {
 
     public void printQueue() {
         temp = front;
+        try {
+            do {
+                System.out.println(temp.getS().toString());
+                temp = temp.getNext();
+            }
+            while (temp != front && temp != null);
+        } catch (NullPointerException ignored) {
+        }
+    }
 
+    public void remove(String name) {
+        temp = front;
     }
 }
