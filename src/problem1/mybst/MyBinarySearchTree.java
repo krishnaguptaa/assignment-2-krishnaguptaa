@@ -45,6 +45,7 @@ public class MyBinarySearchTree<E> implements MyBinarySearchTreeADT<E> {
     }
 
     public void print() {
-
+        printLeftChild(root, 1);
+        System.out.println();
     }
 }
