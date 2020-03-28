@@ -48,4 +48,9 @@ public class MyCircularQueue {
         newNode.setNext(temp.getNext());
         temp.setNext(newNode);
     }
+
+    public void printQueue() {
+        temp = front;
+
+    }
 }
