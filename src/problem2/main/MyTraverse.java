@@ -38,6 +38,10 @@ public class MyTraverse {
     }
 
     void traversePostorder(TreeNode node) {
-
+        if (node != null) {
+            traversePostorder(node.getLeft());
+            traversePostorder(node.getRight());
+            System.out.println(node.getData() + " ");
+        }
     }
 }
