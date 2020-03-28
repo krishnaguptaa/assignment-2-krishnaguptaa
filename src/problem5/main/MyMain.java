@@ -15,15 +15,40 @@ import java.util.Scanner;
 //executable class
 public class MyMain {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         MyCircularQueue m = new MyCircularQueue();
-        Node node;
-        for (int i = 0; i < 6; i++) {
-            node = new Node(new Student());
+        System.out.println("Enter no. of records you want to enter: ");
+        int n = sc.nextInt();
+        while (n != 0) {
+            Student student = new Student();
+            Node node = new Node();
+
+            System.out.println("Enter name");
+            student.setName(sc.next().trim());
+            System.out.println("Enter roll number");
+            student.setRollno(sc.nextInt());
+            System.out.println("Enter backlogs");
+            int backLogs = sc.nextInt();
+            if (backLogs > 2) {
+                System.out.println("This student is not allowed");
+                continue;
+            }
+            student.setBacklog(backLogs);
+
+            node.setS(student);
+
             m.enqueue(node);
+
+            n--;
         }
-        m.printQueue();
-        m.remove(new Scanner(System.in).next());
-        m.printQueue();
-        m.process(new Scanner(System.in).next());
+
+        System.out.println("Data before deleting records");
+        m.traverseQueue();
+
+        System.out.println("Removing zero backlog students");
+        m.removeZeroBacklogRecords();
+
+        System.out.println("Data after deleting records");
+        m.traverseQueue();
     }
 }
